@@ -35,12 +35,22 @@
 </tr>
 
 <?php
-echo "<tr>";
-echo "<td>Table cell 1</td>";
-echo "<td>Table cell 2</td>";
-echo "<td>Table cell 2</td>";
-echo "<td>Table cell 2</td>";
-echo "</tr>";
+
+    $myfile = fopen("Data.txt", "r") or die("Unable to open file!");
+    $json = fread($myfile, filesize("Data.txt"));
+    fclose($myfile);
+
+    $RegInfo = json_decode($json, true);
+
+    foreach ($RegInfo as $value) {
+        echo "<tr>";
+        echo ("<td>" + $value[cat] + "</td>");
+        echo "<td>" + $value[to] + "</td>";
+        echo "<td>" + $value[amount] + "</td>";
+        echo "<td></td>";
+        echo "</tr>";
+    }
+    
 ?>
 
 
